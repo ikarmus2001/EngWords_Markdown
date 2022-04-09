@@ -25,4 +25,3 @@ def main_api(input_csv: str):
     with open('result_markdown.md', 'w') as w:
         w.write(markdown_header)
         w.write(result)
-    exit(1)

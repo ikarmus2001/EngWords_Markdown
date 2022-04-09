@@ -1,10 +1,12 @@
 import requests
 import json
+from os import listdir
 from mysecrets import oxford_secrets, merriam_collegiate, merriam_intermediate
 from datetime import datetime
 import csv
 
 json_dir = '/json_files'
+
 
 
 def csv_read_sort(file_dir) -> list:
@@ -20,7 +22,7 @@ def csv_read_sort(file_dir) -> list:
     return result
 
 
-def freedictionary(word: str, save_jsons=True) -> dict:
+def freedictionary(word: str, save_jsons=True, api_call=False) -> dict:
     """
     Creates, sends and handles API calls to https://dictionaryapi.dev/
     :param word: english word provided to API, assuming it is right
@@ -28,20 +30,26 @@ def freedictionary(word: str, save_jsons=True) -> dict:
     :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
          where X = each def.
     """
-    dict_name = 'freedict'
-    base = "https://api.dictionaryapi.dev/api/v2/entries/en"
-    url = f"{base}/{word}"
-    # oxford_header = {"app_id": {app_id}, "app_key": {app_key}}
-    r = requests.get(url)  # , headers=oxford_header)
+
+    if api_call:
+        url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+        r = api_request(url)
+        j = json.load(r.json())
+    else:
+        j = open_local_json(f"{json_dir}/freedict_{word}_")
 
     if save_jsons:
-        with open(f"{json_dir}/freedict_{word}_{str(datetime.now())}", 'a') as a:
+        now = datetime.datetime.now()
+        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
+        with open(f"{json_dir}/freedict_{word}_{date}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
-    j = json.load(r.json())
+
     result = {'word': word}  # init result with searched word
+
     # TODO what if word is not defined in dict?
+    dict_name = 'freedict'
     if not j.get('title') == "No Definitions Found":
         for index, (_, sense) in enumerate(j['meanings'][0]):
             # part_of_speech = sense['partOfSpeech']
@@ -51,7 +59,7 @@ def freedictionary(word: str, save_jsons=True) -> dict:
     return result
 
 
-def oxford(word: str, save_jsons=True) -> dict:
+def oxford(word: str, save_jsons=True, api_call=False) -> dict:
     """
     Creates, sends and handles API calls to Oxford Dictionaries
     More info: https://developer.oxforddictionaries.com/documentation
@@ -61,15 +69,20 @@ def oxford(word: str, save_jsons=True) -> dict:
          where X = each def.
     """
     dict_name = 'oxford'
-    base = "https://od-api.oxforddictionaries.com/api/v2/entries/"
-    language = "en-gb"
-    app_id, app_key = oxford_secrets()
-    url = f"{base}/{language}/{word}"
-    oxford_header = {"app_id": {app_id}, "app_key": {app_key}}
-    r = requests.get(url, headers=oxford_header)
+    if api_call:
+        base = "https://od-api.oxforddictionaries.com/api/v2/entries/"
+        language = "en-gb"
+        app_id, app_key = oxford_secrets()
+        url = f"{base}/{language}/{word}"
+        oxford_header = {"app_id": {app_id}, "app_key": {app_key}}
+        r = api_request(url, header=oxford_header)
+    else:
+        pass  # TODO
 
     if save_jsons:
-        with open(f"{json_dir}/oxford_{word}_{str(datetime.now())}", 'a') as a:
+        now = datetime.datetime.now()
+        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
+        with open(f"{json_dir}/oxford_{word}_{date}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
@@ -82,7 +95,7 @@ def oxford(word: str, save_jsons=True) -> dict:
     return result
 
 
-def merriam_webster_collegiate(word: str, save_jsons=True) -> dict:
+def merriam_webster_collegiate(word: str, save_jsons=True, api_call=False) -> dict:
     """
         Creates, sends and handles API calls to Merriam-Webster Dictionaries
         More info: https://dictionaryapi.com/products/json
@@ -91,18 +104,22 @@ def merriam_webster_collegiate(word: str, save_jsons=True) -> dict:
         :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
          where X = each def.
         """
+    if api_call:
+        base = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
+        url = f"{base}/{word}?key={merriam_collegiate}"
+        r = api_request(url)
+    else:
+        open_local_json()
+
+    if save_jsons:
+        now = datetime.datetime.now()
+        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
+        with open(f"{json_dir}/mw_c_{word}_{date}.json", 'a') as a:
+            json.dump(r, a)
+            a.write("\n")
+
+    j = json.load(r.json())
     dict_name = 'merriam collegiate'
-    base = "https://www.dictionaryapi.com/api/v3/references/collegiate/json/"
-    api_key = merriam_collegiate
-    url = f"{base}/{word}?key={api_key}"
-    r = requests.get(url)
-
-    if save_jsons:
-        with open(f"{json_dir}/mw_c_{word}_{str(datetime.now())}.json", 'a') as a:
-            json.dump(r, a)
-            a.write("\n")
-
-    j = json.load(r.json())
     result = {'word': word}  # init result with searched word
     # TODO what if word is not defined in dict?
     for meaning in j.len():
@@ -112,7 +129,7 @@ def merriam_webster_collegiate(word: str, save_jsons=True) -> dict:
     return result
 
 
-def merriam_webster_intermediate(word: str, save_jsons=True) -> dict:
+def merriam_webster_intermediate(word: str, save_jsons=True, api_call=False) -> dict:
     """
         Creates, sends and handles API calls to Merriam-Webster Dictionaries
         More info: https://dictionaryapi.com/products/json
@@ -121,14 +138,18 @@ def merriam_webster_intermediate(word: str, save_jsons=True) -> dict:
         :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
          where X = each def.
         """
-    dict_name = 'merriam intermediate'
-    base = "https://www.dictionaryapi.com/api/v3/references/sd3/json/"
-    api_key = merriam_intermediate
-    url = f"{base}/{word}?key={api_key}"
-    r = requests.get(url)
+    if api_call:
+        dict_name = 'merriam intermediate'
+        base = "https://www.dictionaryapi.com/api/v3/references/sd3/json/"
+        url = f"{base}/{word}?key={merriam_intermediate}"
+        r = api_request(url)
+    else:
+        open_local_json()
 
     if save_jsons:
-        with open(f"{json_dir}/mw_i_{word}_{str(datetime.now())}", 'a') as a:
+        now = datetime.datetime.now()
+        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
+        with open(f"{json_dir}/mw_i_{word}_{date}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
@@ -141,7 +162,21 @@ def merriam_webster_intermediate(word: str, save_jsons=True) -> dict:
             result[f'{dict_name}_shortDefinitions{index}'] = tmp
     return result
 
-# TODO pasowałoby osobną funkcję do requestów zrobić
+
+def api_request(url: str, header=False) -> requests.Response:
+    if not header:
+        return requests.get(url)
+    return requests.get(url, header)
+
+def open_local_json(start_of_filename: str) -> json_object XDDDD:  # TODO asap
+    matching_files = [f for f in os.listdir() if f.startswith(start_of_filename)]
+    if matching_files.len() > 1
+        for id, file in enumerate(matching_files):
+            tmp_f = file[-16:-1]
+            tmp_f[10] = " "
+            formatted_date = datetime.strptime(tmp_f)
+        with open()
+    return matching_files[0]
 
 # TODO jak kiedys bede przy tym siedzial, to trzeba uprosicic zwracane typy,
 #       nie ma potrzeby wszędzie jsona trzymać
