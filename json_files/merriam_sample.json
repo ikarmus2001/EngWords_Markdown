@@ -1,0 +1,293 @@
+[
+  {
+    "meta": {
+      "id": "cucumber",
+      "uuid": "5133c876-b7dd-4516-9b34-84aa75a87e92",
+      "sort": "035763300",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "cucumber",
+        "cucumbers"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "cu*cum*ber",
+      "prs": [
+        {
+          "mw": "\u02c8ky\u00fc-(\u02cc)k\u0259m-b\u0259r",
+          "sound": {
+            "audio": "cucumb01",
+            "ref": "c",
+            "stat": "1"
+          }
+        }
+      ]
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}the fruit of a vine ({it}Cucumis sativus{\/it}) of the gourd family cultivated as a garden vegetable"
+                  ]
+                ],
+                "sdsense": {
+                  "sd": "also",
+                  "dt": [
+                    [
+                      "text",
+                      "{bc}this vine"
+                    ]
+                  ]
+                }
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "art": {
+      "artid": "cucumbe",
+      "capt": "cucumber"
+    },
+    "et": [
+      [
+        "text",
+        "Middle English, from Anglo-French {it}cucumbre{\/it}, from Latin {it}cucumer-, cucumis{\/it}"
+      ]
+    ],
+    "date": "14th century",
+    "shortdef": [
+      "the fruit of a vine (Cucumis sativus) of the gourd family cultivated as a garden vegetable; also : this vine"
+    ]
+  },
+  {
+    "meta": {
+      "id": "cucumber mosaic",
+      "uuid": "b8b6373f-0943-4150-a364-539b80dac1f4",
+      "sort": "035763400",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "cucumber mosaic",
+        "cucumber mosaics"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "cucumber mosaic"
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}a plant disease especially of cucumbers that is caused by a single-stranded RNA virus (species {it}Cucumber mosaic virus{\/it} of the genus {it}Cucumovirus{\/it}, family {it}Bromoviridae{\/it}) and is transmitted chiefly by an aphid and produces mottled foliage and often pale warty fruits"
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "date": "1916",
+    "shortdef": [
+      "a plant disease especially of cucumbers that is caused by a single-stranded RNA virus (species Cucumber mosaic virus of the genus Cucumovirus, family Bromoviridae) and is transmitted chiefly by an aphid and produces mottled foliage and often pale warty fruits"
+    ]
+  },
+  {
+    "meta": {
+      "id": "cucumber tree",
+      "uuid": "cd263ea7-3297-4d7b-99d7-8de0bd9982f1",
+      "sort": "035763500",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "cucumber tree",
+        "cucumber trees"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "cucumber tree"
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}a magnolia ({it}Magnolia acuminata{\/it}) of the eastern U.S. having fruit resembling a small cucumber"
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "date": "circa 1782",
+    "shortdef": [
+      "a magnolia (Magnolia acuminata) of the eastern U.S. having fruit resembling a small cucumber"
+    ]
+  },
+  {
+    "meta": {
+      "id": "sea cucumber",
+      "uuid": "79f53eb7-0204-426e-9cac-aa2a0f14c65b",
+      "sort": "191609000",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "holothurian",
+        "sea cucumber",
+        "sea cucumbers"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "sea cucumber"
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}any of a class (Holothurioidea) of echinoderms having a tough muscular elongate body with tentacles surrounding the mouth "
+                  ],
+                  [
+                    "ca",
+                    {
+                      "intro": "called also",
+                      "cats": [
+                        {
+                          "cat": "holothurian"
+                        }
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "art": {
+      "artid": "seacucu",
+      "capt": "sea cucumber"
+    },
+    "date": "1841",
+    "shortdef": [
+      "any of a class (Holothurioidea) of echinoderms having a tough muscular elongate body with tentacles surrounding the mouth \u2014called also holothurian"
+    ]
+  },
+  {
+    "meta": {
+      "id": "spotted cucumber beetle",
+      "uuid": "b919cafb-df3c-4e01-95b5-7960d852b708",
+      "sort": "194698400",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "spotted cucumber beetle",
+        "spotted cucumber beetles"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "spotted cucumber beetle"
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}a rather slender greenish-yellow beetle ({it}Diabrotica undecimpunctata howardi{\/it}) that feeds as an adult on various ornamental and crop plants and is a vector of wilt disease especially of cucumbers and melons"
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "date": "1923",
+    "shortdef": [
+      "a rather slender greenish-yellow beetle (Diabrotica undecimpunctata howardi) that feeds as an adult on various ornamental and crop plants and is a vector of wilt disease especially of cucumbers and melons"
+    ]
+  },
+  {
+    "meta": {
+      "id": "squirting cucumber",
+      "uuid": "5017aad0-037a-4926-86ff-48f4b059afa6",
+      "sort": "194726300",
+      "src": "collegiate",
+      "section": "alpha",
+      "stems": [
+        "squirting cucumber",
+        "squirting cucumbers"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "squirting cucumber"
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}a Mediterranean plant ({it}Ecballium elaterium{\/it}) of the gourd family with oblong fruit that bursts from the peduncle when ripe and forcibly ejects the seeds"
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "date": "1802",
+    "shortdef": [
+      "a Mediterranean plant (Ecballium elaterium) of the gourd family with oblong fruit that bursts from the peduncle when ripe and forcibly ejects the seeds"
+    ]
+  }
+]
