@@ -1,7 +1,7 @@
 import json
 
 
-def test_oxford_json():
+def test_oxford_json():  # testing from local file
     file = "D:\\Nie-gry\\Programowanie\\PycharmProjects\\EngWords_Markdown\\json_dump_surely_original.json"
     with open(file, 'r') as r:
         j = json.load(r)
