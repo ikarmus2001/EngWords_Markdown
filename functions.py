@@ -2,8 +2,23 @@ import requests
 import json
 from mysecrets import oxford_secrets, merriam_collegiate, merriam_intermediate
 from datetime import datetime
+import csv
 
 json_dir = '/json_files'
+
+
+def csv_read_sort(file_dir) -> list:
+    # importing words from csv file
+    with open(file_dir, 'r') as r:
+        for w in csv.reader(r):
+            words.append(w)
+
+    result = []
+    for word in words:
+        if word.lower() not in result:
+            result.append(word)
+    return result
+
 
 def freedictionary(word: str, save_jsons=True) -> dict:
     """
