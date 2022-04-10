@@ -2,21 +2,20 @@ import requests
 import json
 from os import listdir
 from mysecrets import oxford_secrets, merriam_collegiate, merriam_intermediate
-from datetime import datetime
 import csv
 
 json_dir = '/json_files'
 
 
-
-def csv_read_sort(file_dir) -> list:
+def csv_read_sort(file_dir: str) -> list:
     # importing words from csv file
+    words = []
     with open(file_dir, 'r') as r:
         for w in csv.reader(r):
-            words.append(w)
+            words.append(w[0])
 
     result = []
-    for word in words:
+    for word in words:  # TODO can be optimized further
         if word.lower() not in result:
             result.append(word)
     return result
@@ -25,6 +24,7 @@ def csv_read_sort(file_dir) -> list:
 def freedictionary(word: str, save_jsons=True, api_call=False) -> dict:
     """
     Creates, sends and handles API calls to https://dictionaryapi.dev/
+    :param api_call:
     :param word: english word provided to API, assuming it is right
     :param save_jsons: default True, otherwise doese not save requests
     :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
@@ -39,12 +39,9 @@ def freedictionary(word: str, save_jsons=True, api_call=False) -> dict:
         j = open_local_json(f"{json_dir}/freedict_{word}_")
 
     if save_jsons:
-        now = datetime.datetime.now()
-        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
-        with open(f"{json_dir}/freedict_{word}_{date}", 'a') as a:
+        with open(f"{json_dir}/freedict_{word}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
-
 
     result = {'word': word}  # init result with searched word
 
@@ -63,6 +60,7 @@ def oxford(word: str, save_jsons=True, api_call=False) -> dict:
     """
     Creates, sends and handles API calls to Oxford Dictionaries
     More info: https://developer.oxforddictionaries.com/documentation
+    :param api_call:
     :param word: english word provided to API, assuming it is right
     :param save_jsons: default True, otherwise doese not save requests
     :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
@@ -80,9 +78,7 @@ def oxford(word: str, save_jsons=True, api_call=False) -> dict:
         pass  # TODO
 
     if save_jsons:
-        now = datetime.datetime.now()
-        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
-        with open(f"{json_dir}/oxford_{word}_{date}", 'a') as a:
+        with open(f"{json_dir}/oxford_{word}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
@@ -99,6 +95,7 @@ def merriam_webster_collegiate(word: str, save_jsons=True, api_call=False) -> di
     """
         Creates, sends and handles API calls to Merriam-Webster Dictionaries
         More info: https://dictionaryapi.com/products/json
+        :param api_call:
         :param word: english word provided to API, assuming it is right
         :param save_jsons: default True, otherwise doese not save requests
         :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
@@ -112,9 +109,7 @@ def merriam_webster_collegiate(word: str, save_jsons=True, api_call=False) -> di
         open_local_json()
 
     if save_jsons:
-        now = datetime.datetime.now()
-        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
-        with open(f"{json_dir}/mw_c_{word}_{date}.json", 'a') as a:
+        with open(f"{json_dir}/mw_c_{word}.json", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
@@ -133,6 +128,7 @@ def merriam_webster_intermediate(word: str, save_jsons=True, api_call=False) -> 
     """
         Creates, sends and handles API calls to Merriam-Webster Dictionaries
         More info: https://dictionaryapi.com/products/json
+        :param api_call:
         :param word: english word provided to API, assuming it is right
         :param save_jsons: default True, otherwise doese not save requests
         :return: dict{"word": word: str, "shortDefinition{X}": shortdef: str}
@@ -147,9 +143,7 @@ def merriam_webster_intermediate(word: str, save_jsons=True, api_call=False) -> 
         open_local_json()
 
     if save_jsons:
-        now = datetime.datetime.now()
-        date = f'{str(now.date())}_{str(now.hour)}:{str(now.minute)}'
-        with open(f"{json_dir}/mw_i_{word}_{date}", 'a') as a:
+        with open(f"{json_dir}/mw_i_{word}", 'a') as a:
             json.dump(r, a)
             a.write("\n")
 
@@ -168,18 +162,18 @@ def api_request(url: str, header=False) -> requests.Response:
         return requests.get(url)
     return requests.get(url, header)
 
-def open_local_json(start_of_filename: str) -> json_object XDDDD:  # TODO asap
-    matching_files = [f for f in os.listdir() if f.startswith(start_of_filename)]
-    if matching_files.len() > 1
-        for id, file in enumerate(matching_files):
-            tmp_f = file[-16:-1]
-            tmp_f[10] = " "
-            formatted_date = datetime.strptime(tmp_f)
-        with open()
-    return matching_files[0]
+
+def open_local_json(start_of_filename: str) -> dict:
+    matching_files = [f for f in listdir() if f.startswith(start_of_filename)].sort()
+    result = []
+    # with open()
+
+    return result
+
 
 # TODO jak kiedys bede przy tym siedzial, to trzeba uprosicic zwracane typy,
 #       nie ma potrzeby wszędzie jsona trzymać
+
 
 def ask_which_meaning(meanings: dict) -> tuple:
     # can't' afford API, you need to click the link :(
@@ -187,12 +181,12 @@ def ask_which_meaning(meanings: dict) -> tuple:
 
     print(f'Choose definition for {word}:')
     definitions = []
-    id = 0
+    word_id = 0
     for key, value in meanings:
         if key == 'word':
             continue
         definitions.append(value)
-        print(f'{id} from {key.split("_")[0]}:  {value}')
+        print(f'{word_id} from {key.split("_")[0]}:  {value}')
     choice = input("Choose coresponding id  OR  -1 to write own definition")
     if choice == -1 or "":
         result = input("Input your definition: ")
@@ -203,7 +197,8 @@ def ask_which_meaning(meanings: dict) -> tuple:
     print(f'{word} --PL--> {pl_eng_link}')
     translation = input("Input translation: ")
 
-    return (result, translation)
+    return result, translation
+
 
 def markdowning(words_def: list, start_id=1) -> str:
     output = ''

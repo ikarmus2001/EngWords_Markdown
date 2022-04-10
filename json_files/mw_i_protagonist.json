@@ -1,0 +1,49 @@
+[
+  {
+    "meta": {
+      "id": "protagonist",
+      "uuid": "f13f4a7b-afba-4345-97d3-8fad16006fa8",
+      "src": "int_dict",
+      "section": "alpha",
+      "stems": [
+        "protagonist",
+        "protagonists"
+      ],
+      "offensive": false
+    },
+    "hwi": {
+      "hw": "pro*tag*o*nist",
+      "prs": [
+        {
+          "mw": "pr\u014d-\u02c8tag-\u0259-n\u0259st",
+          "sound": {
+            "audio": "protag01"
+          }
+        }
+      ]
+    },
+    "fl": "noun",
+    "def": [
+      {
+        "sseq": [
+          [
+            [
+              "sense",
+              {
+                "dt": [
+                  [
+                    "text",
+                    "{bc}the chief character in a play, novel, or story"
+                  ]
+                ]
+              }
+            ]
+          ]
+        ]
+      }
+    ],
+    "shortdef": [
+      "the chief character in a play, novel, or story"
+    ]
+  }
+]
